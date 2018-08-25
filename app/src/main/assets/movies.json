@@ -1,0 +1,43 @@
+{
+  "movieArray": [{
+    "mName": "Suicide Squad",
+    "mYear": 2016,
+    "mType": "action"
+  }, {
+    "mName": "Matrix",
+    "mYear": 1999,
+    "mType": "action"
+  }, {
+    "mName": "Matrix Revolutions",
+    "mYear": 2003,
+    "mType": "action"
+  }, {
+    "mName": "Ip Man",
+    "mYear": 2014,
+    "mType": "Martial Art"
+  }, {
+    "mName": "Ip Man 2",
+    "mYear": 2014,
+    "mType": "Martial Art"
+  }, {
+    "mName": "Ip Man 3",
+    "mYear": 2016,
+    "mType": "Martial Art"
+  }, {
+    "mName": "The Dark Knight",
+    "mYear": 2008,
+    "mType": "action"
+  }, {
+    "mName": "Ninja turtles 2",
+    "mYear": 2016,
+    "mType": "action"
+  }, {
+    "mName": "Zootopia",
+    "mYear": 2016,
+    "mType": "Family"
+  }, {
+    "mName": "Kung Fu Panda 3",
+    "mYear": 2016,
+    "mType": "Comedy"
+  }]
+}
