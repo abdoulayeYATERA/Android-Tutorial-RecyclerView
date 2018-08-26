@@ -1,0 +1,18 @@
+{
+  "carArray": [{
+    "mName": "206",
+    "mBrand" : "Peugeot",
+    "mYear": 2016,
+    "mEngine": "gasoline"
+  }, {
+    "mName": "Clio",
+    "mBrand" : "Renault",
+    "mYear": 1999,
+    "mEngine": "gasoline"
+  }, {
+    "mName": "C4",
+    "mBrand" : "Citroen",
+    "mYear": 2003,
+    "mEngine": "diesel"
+  }]
+}

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 /**
  * Created by abdoulaye on 7/7/16.
- * represente the movies.json file in java form
  */
 public class MoviesJsonFile {
     private final String TAG = getClass().getSimpleName();

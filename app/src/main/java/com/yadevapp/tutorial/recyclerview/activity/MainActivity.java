@@ -1,9 +1,9 @@
 package com.yadevapp.tutorial.recyclerview.activity;
 
+import android.service.carrier.CarrierService;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -11,6 +11,8 @@ import android.util.Log;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yadevapp.tutorial.recyclerview.R;
 import com.yadevapp.tutorial.recyclerview.adapter.RecyclerViewAdapter;
+import com.yadevapp.tutorial.recyclerview.entity.Car;
+import com.yadevapp.tutorial.recyclerview.entity.CarsJsonFile;
 import com.yadevapp.tutorial.recyclerview.entity.Movie;
 import com.yadevapp.tutorial.recyclerview.entity.MoviesJsonFile;
 
@@ -48,8 +50,18 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             Log.e(TAG, "IOException", e);
         }
+
+        ArrayList<Car> carList = new ArrayList<>();
+        try {
+            //parse the assets file cars.json
+            CarsJsonFile carsJsonFile = mapper.readValue(getAssets().open("cars.json"), CarsJsonFile.class);
+            carList = carsJsonFile.getCarArray();
+        } catch (IOException e) {
+            Log.e(TAG, "IOException", e);
+        }
+
         //instanciate the adapter
-        mRecyclerViewAdapter = new RecyclerViewAdapter(this, movieList);
+        mRecyclerViewAdapter = new RecyclerViewAdapter(this, movieList, carList);
         //bind the adapter to the listview
         mRecyclerView.setAdapter(mRecyclerViewAdapter);
     }
