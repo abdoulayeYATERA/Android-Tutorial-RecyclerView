@@ -29,9 +29,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //get views from conventview
         mRecyclerView = findViewById(R.id.activity_main_recyclerview);
-        //set layout uncomment the one you want to use
+        //layout uncomment the one you want to use
         //linear layout
-        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         //grid layout (2 columns)
         //mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
 
