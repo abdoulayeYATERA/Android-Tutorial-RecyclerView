@@ -3,6 +3,7 @@ package com.yadevapp.tutorial.recyclerview.activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -28,8 +29,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //get views from conventview
         mRecyclerView = findViewById(R.id.activity_main_recyclerview);
-        //set recyclerview layout manager
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //set layout uncomment the one you want to use
+        //linear layout
+        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        //grid layout (2 columns)
+        //mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+
         //add separator
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this,
                 DividerItemDecoration.VERTICAL));
