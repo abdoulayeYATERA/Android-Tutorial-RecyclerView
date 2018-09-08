@@ -7,3 +7,5 @@
 **/captures
 **/gradle
 **/.externalNativeBuild
+Session.vim
+.gutctags
