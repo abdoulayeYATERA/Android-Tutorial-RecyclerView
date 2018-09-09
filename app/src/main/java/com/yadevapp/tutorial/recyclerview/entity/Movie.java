@@ -56,4 +56,15 @@ public class Movie {
     public void setmStarsNumber(int mStarsNumber) {
         this.mStarsNumber = mStarsNumber;
     }
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "mName='" + mName + '\'' +
+                ", mYear=" + mYear +
+                ", mType='" + mType + '\'' +
+                ", mDuration=" + mDuration +
+                ", mStarsNumber=" + mStarsNumber +
+                '}';
+    }
 }

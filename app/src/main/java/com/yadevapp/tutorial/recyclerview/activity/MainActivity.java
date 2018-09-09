@@ -8,6 +8,8 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yadevapp.tutorial.recyclerview.R;
@@ -63,6 +65,31 @@ public class MainActivity extends AppCompatActivity {
 
         //instanciate the adapter
         mRecyclerViewAdapter = new RecyclerViewAdapter(this, movieList, carList);
+        //set car click listener
+        mRecyclerViewAdapter.setmCarItemClickListener(new RecyclerViewAdapter.CarItemClickListener() {
+            @Override
+            public void onCarItemClick(View view, Car car, int position) {
+                Toast.makeText(MainActivity.this, "onCarItemClick : " + car.toString(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCarItemLongClick(View view, Car car, int position) {
+                Toast.makeText(MainActivity.this, "onCarItemLongClick : " + car.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        //set movie click listener
+        mRecyclerViewAdapter.setmMovieItemClickListener(new RecyclerViewAdapter.MovieItemClickListener() {
+            @Override
+            public void onMovieItemClick(View view, Movie movie, int position) {
+                Toast.makeText(MainActivity.this, "onMovieItemCLick : " + movie.toString(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onMovieItemLongClick(View view, Movie movie, int position) {
+                Toast.makeText(MainActivity.this, "onMovieItemLongCLick : " + movie.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
         //bind the adapter to the listview
         mRecyclerView.setAdapter(mRecyclerViewAdapter);
     }

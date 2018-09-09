@@ -38,4 +38,14 @@ public class Car {
     public void setmEngine(String mEngine) {
         this.mEngine = mEngine;
     }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "mName='" + mName + '\'' +
+                ", mYear=" + mYear +
+                ", mBrand='" + mBrand + '\'' +
+                ", mEngine='" + mEngine + '\'' +
+                '}';
+    }
 }

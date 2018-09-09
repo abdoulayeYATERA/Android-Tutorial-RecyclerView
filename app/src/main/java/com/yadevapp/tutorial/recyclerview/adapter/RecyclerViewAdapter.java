@@ -19,6 +19,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
   private WeakReference<Context> mContext;
   private ArrayList<Movie> mMovieList = new ArrayList<>();
   private ArrayList<Car> mCarList = new ArrayList<>();
+  private CarItemClickListener mCarItemClickListener;
+  private MovieItemClickListener mMovieItemClickListener;
 
   public RecyclerViewAdapter(Context context, ArrayList<Movie> movieList, ArrayList<Car> carList) {
     Log.d(TAG, "RecyclerViewAdapter: ");
@@ -26,7 +28,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     mMovieList = movieList;
     mCarList = carList;
   }
-
 
   @Override
   public int getItemViewType(int position) {
@@ -87,6 +88,21 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     return mMovieList.size() + mCarList.size();
   }
 
+  public Object getItem(int position) {
+    if (position < mCarList.size()) {
+      return mCarList.get(position);
+    }
+    return mMovieList.get(position - mCarList.size());
+  }
+
+  public void setmCarItemClickListener(CarItemClickListener mCarItemClickListener) {
+    this.mCarItemClickListener = mCarItemClickListener;
+  }
+
+  public void setmMovieItemClickListener(MovieItemClickListener mMovieItemClickListener) {
+    this.mMovieItemClickListener = mMovieItemClickListener;
+  }
+
   public class MovieViewHolder extends RecyclerView.ViewHolder {
     private View listViewRow;
     private TextView titleTextView;
@@ -99,6 +115,25 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
       titleTextView = (TextView) itemView.findViewById(R.id.item_recyclerview_book_title);
       yearTextView = (TextView) itemView.findViewById(R.id.item_recyclerview_book_year);
       typetextView = (TextView) itemView.findViewById(R.id.item_recyclerview_book_type);
+
+      itemView.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+          if (mMovieItemClickListener != null) {
+            mMovieItemClickListener.onMovieItemClick(listViewRow, (Movie)getItem(getAdapterPosition()), getAdapterPosition());
+          }
+        }
+      });
+
+      itemView.setOnLongClickListener(new View.OnLongClickListener() {
+        @Override
+        public boolean onLongClick(View v) {
+          if (mMovieItemClickListener != null) {
+            mMovieItemClickListener.onMovieItemLongClick(listViewRow, (Movie)getItem(getAdapterPosition()), getAdapterPosition());
+          }
+          return false;
+        }
+      });
     }
 
     public TextView getTitleTextView() {
@@ -120,12 +155,31 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private TextView yearTextView;
     private TextView brandTextView;
 
-    public CarViewHolder(View itemView) {
+    public CarViewHolder(final View itemView) {
       super(itemView);
       listViewRow = itemView;
       nameTextView = (TextView) itemView.findViewById(R.id.item_recyclerview_car_name);
       yearTextView = (TextView) itemView.findViewById(R.id.item_recyclerview_car_year);
       brandTextView = (TextView) itemView.findViewById(R.id.item_recyclerview_car_brand);
+
+      itemView.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+          if (mCarItemClickListener != null) {
+            mCarItemClickListener.onCarItemClick(listViewRow, (Car)getItem(getAdapterPosition()), getAdapterPosition());
+          }
+        }
+      });
+
+      itemView.setOnLongClickListener(new View.OnLongClickListener() {
+        @Override
+        public boolean onLongClick(View v) {
+          if (mCarItemClickListener != null) {
+            mCarItemClickListener.onCarItemLongClick(listViewRow, (Car)getItem(getAdapterPosition()), getAdapterPosition());
+          }
+          return false;
+        }
+      });
     }
 
     public TextView getNameTextView() {
@@ -167,5 +221,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
            throw new RuntimeException("unknown ViewType");
      }
     }
+  }
+
+  public interface MovieItemClickListener {
+    void onMovieItemClick(View view, Movie movie, int position);
+    void onMovieItemLongClick(View view, Movie movie, int position);
+  }
+
+  public interface CarItemClickListener {
+    void onCarItemClick(View view, Car car, int position);
+    void onCarItemLongClick(View view, Car car, int position);
   }
 }
